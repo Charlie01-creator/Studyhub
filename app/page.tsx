@@ -39,10 +39,7 @@ export default async function HomePage() {
   }
 
   const { data: profile } = await supabase
-    .from("profiles")
-    .select("is_suspended")
-    .eq("id", user.id)
-    .single();
+    .from("profiles").select("is_suspended").eq("id", user.id).maybeSingle();
 
   if (profile?.is_suspended) {
     return (
